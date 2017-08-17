@@ -1,2 +1,6 @@
-body{background: #ccc;}
-h1{color: #777;}
+body{
+	padding: 20px;
+}
+table td:first-child{
+	width: 30%;
+}
