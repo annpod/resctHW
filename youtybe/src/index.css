@@ -13,15 +13,16 @@ body {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 30px;
-	height: 30px;
-	margin-top: -15px;
-	margin-left: -15px;
+	width: 50px;
+	height: 50px;
+	margin-top: -25px;
+	margin-left: -25px;
 	border-radius: 50%;
-	border: 4px solid transparent;
+	border: 5px solid transparent;
 	border-top-color: #07d;
 	border-bottom-color: #07d;
 	animation: spinner .8s ease infinite;
+	z-index: 100;
 }
 .embed-responsive{
 	margin-bottom: 2rem;
@@ -41,5 +42,16 @@ body {
 	padding-top: 2rem;
 }
 .media-body{
-	align-content: center;
+	align-self: center;
+}
+.media-title {
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+.media-heading {
+	font-size: 0.9rem;
+}
+.media-left {margin-right: 1rem;}
+.embed-responsive{
+	background: #000;
 }

@@ -20,7 +20,7 @@ class App extends Component {
 			videoPoster: null,
 			videoDescription: null,
 			videoTitle: null,
-			download: true,
+			spinner: true,
 			result: null
 		};
 
@@ -41,7 +41,7 @@ class App extends Component {
 				videoPoster: data[0].snippet.thumbnails.default.url,
 				videoDescription: data[0].snippet.description,
 				videoTitle: data[0].snippet.title,
-				download: false
+				spinner: false
 			})
 		})
 	}
@@ -51,12 +51,16 @@ class App extends Component {
 			videoPoster: item.snippet.thumbnails.default.url,
 			videoDescription: item.snippet.description,
 			videoTitle: item.snippet.title,
-			download: false
+			spinner: false
 		})
 	}
 	updateState() {
-		console.log('changed',this.textInput.value);
-		this.setState({search: this.textInput.value});
+		console.log('changed');
+		this.setState({
+			search: this.textInput.value,
+			spinner: true
+		});
+		console.log('spinner',this.state.spinner);
 		this.youtubeSearch();
 	}
 	render() {
@@ -64,8 +68,8 @@ class App extends Component {
 
 	return (
 		<main className="container">
-			{this.state.download &&
-			<div className="spinner"></div>
+			{this.state.spinner &&
+				<div className="spinner"></div>
 			}
 			<div>
 				<div className="search-bar navbar">
@@ -74,26 +78,26 @@ class App extends Component {
 				</div>
 				<div className="row">
 					<div className="video-detail col-md-8">
-						<div className="embed-responsive embed-responsive-16by9">
-							{this.state.videoLink &&
+						{this.state.videoLink &&
 							<div>
-								<iframe title="random" src={`https://www.youtube.com/embed/${this.state.videoLink}`} />
-								<div className="video-list media">
-									<div className="media-left">
-										<img className="media-object" src={this.state.videoPoster}/>
+								<div className="embed-responsive embed-responsive-16by9">
+
+									<iframe title="random" src={`http://www.youtube.com/embed/${this.state.videoLink}`} />
+								</div>
+								<div className="row">
+									<div className="video-list media col-md-2">
+										<div className="media-left">
+											<img className="media-object" src={this.state.videoPoster}/>
+										</div>
+									</div>
+									<div className="media-body col-md-10">
+										<div className="media-title">{this.state.videoTitle}</div>
+										<div className="media-heading">{this.state.videoDescription}</div>
 									</div>
 								</div>
-								<div className="media-body">
-									<div className="media-heading">{this.state.videoDescription}</div>
-								</div>
+
 							</div>
 							}
-						</div>
-
-						<div className="details">
-							<div>{this.state.videoTitle}</div>
-							<div>{this.state.videoDescription}</div>
-						</div>
 					</div>
 					{this.state.result &&
 					<ul className="col-md-4 list-group">
