@@ -7,11 +7,11 @@ const VideoList = ({list, mainVideoId, updateMainVideo}) => {
 			{list
 			.filter(key => key.id.videoId !== mainVideoId)
 			.map((item, index) => (
-					<li
-						key={index}
-						className="list-group-item">
-						<VideoItem updateMainVideo={updateMainVideo} item={item}/>
-					</li>
+				<li
+					key={index}
+					className="list-group-item">
+					<VideoItem updateMainVideo={updateMainVideo} item={item}/>
+				</li>
 				)
 			)}
 	</ul>

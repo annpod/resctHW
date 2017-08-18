@@ -28,7 +28,7 @@ class App extends Component {
 	componentWillMount() {
 		this.youtubeSearch();
 	}
-	youtubeSearch(searchValue = 'joke') {
+	youtubeSearch(searchValue = 'funny') {
 		YTSearch({key: API_KEY, term:searchValue}, (data) => {
 			console.log(data);
 			this.setState({
