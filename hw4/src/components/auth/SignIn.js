@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './auth.css';
-const userdata = { "user":"sa", "password": "admin" };
+/*const userdata = { "user":"sa", "password": "admin" };
 
 const fetchUserList = () => {
 	fetch(`http://api.jyotish.gift/api/v1/auth/login/`,{
@@ -16,7 +16,7 @@ const fetchUserList = () => {
 };
 console.log(fetchUserList());
 
-
+*/
 class SignIn extends Component{
 	constructor(){
 		super();

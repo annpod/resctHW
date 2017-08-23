@@ -5,10 +5,13 @@ class SignIn extends Component{
 	constructor(){
 		super();
 		this.state={
+			email: '',
 			name: '',
 			password: ''
 		}
 		this.updateInput = this.updateInput.bind(this);
+		this.isEmail = this.isEmail.bind(this);
+		this._onSubmit = this._onSubmit.bind(this);
 	}
 
 	updateInput(e) {
@@ -18,14 +21,26 @@ class SignIn extends Component{
 		if (e.target.name === 'password'){
 			this.setState({password: e.target.value});
 		}
+		if (e.target.email === 'email'){
+			this.setState({email: e.target.value});
+		}
 	}
+	_onSubmit(e) {
+		e.preventDefault();
+		console.log('submit',this.isEmail(this.state.email));
+	}
+	isEmail(emailVal) {
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(emailVal);
+	}
+
 	render(){
 		return (
 			<div>
 				Sign Up
 				<form>
 					<div className="controlGroup">
-						<label htmlFor="email">Name</label>
+						<label htmlFor="email">Email</label>
 						<input type="text" id="email" name="email"  onChange={this.updateInput} />
 					</div>
 					<div className="controlGroup">
@@ -40,7 +55,7 @@ class SignIn extends Component{
 						<label htmlFor="user">User</label>
 						<input type="password" id="user" name="user" onChange={this.updateInput} />
 					</div>
-					<button type="submit">Submit</button>
+					<button type="submit" onSubmit={this._onSubmit}>Submit</button>
 				</form>
 			</div>
 		)
