@@ -1,0 +1,15 @@
+.header .authNav {
+	float: right;
+}
+.header .authNav a{
+	margin-left: 1rem;
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: #0c5aff;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 3px;
+}
+.header .authNav a:hover {
+	background-color: blue;
+}

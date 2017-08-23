@@ -1,0 +1,7 @@
+.header{
+	padding: 1rem;
+	display: flex;
+	flex-direction: row;
+	background-color: #ccc;
+	justify-content: space-between;
+}

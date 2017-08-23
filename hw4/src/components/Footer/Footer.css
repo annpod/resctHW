@@ -1,0 +1,8 @@
+.footer{
+	grid-row-start: 3;
+	grid-row-end:  4;
+	background: #777;
+	color: #fff;
+	padding: 1rem;
+	text-align: center;
+}
