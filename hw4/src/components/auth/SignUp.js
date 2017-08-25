@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './auth.css';
 
 class SignIn extends Component{
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state={
 			email: '',
 			name: '',
@@ -35,6 +35,7 @@ class SignIn extends Component{
 	}
 
 	render(){
+
 		return (
 			<div>
 				Sign Up

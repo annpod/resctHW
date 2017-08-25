@@ -1,34 +1,21 @@
 import React, { Component } from 'react';
 import './auth.css';
-/*const userdata = { "user":"sa", "password": "admin" };
+import {fetchUser} from "../../api/api";
 
-const fetchUserList = () => {
-	fetch(`http://api.jyotish.gift/api/v1/auth/login/`,{
 
-		method: 'POST',
-		body: "user=sa&password=admin"//JSON.stringify(userdata)
-	})
-	.then(response => response.ok ? response.json() : Promise.reject(response.statusText))
-	.then(data => data)
-	.catch((error) => {
-		return Promise.reject(error)
-	});
-};
-console.log(fetchUserList());
-
-*/
 class SignIn extends Component{
-	constructor(){
-		super();
-		this.state={
+	constructor(props){
+		super(props);
+		this.state = {
 			name: '',
-			password: ''
+			password: '',
+			data: null
+
 		}
 		this.updateInput = this.updateInput.bind(this);
+		this._onSubmit = this._onSubmit.bind(this);
 	}
-
 	updateInput(e) {
- 
 		if (e.target.name === 'name'){
 			this.setState({name: e.target.value});
 		}
@@ -36,13 +23,26 @@ class SignIn extends Component{
 			this.setState({password: e.target.value});
 		}
 	}
+
+	_onSubmit(e) {
+		e.preventDefault();
+		const userdata = { "user":this.state.name, "password": this.state.password };
+
+		const data = fetchUser(userdata);
+		data.then(json => {
+				window.localStorage.setItem('token', json.message.token);
+				this.setState({data: json});
+				this.props.login();
+			}
+		);
+	}
+
 	render(){
-		console.log('name',this.state.name);
-		console.log('password',this.state.name);
+		console.log('props',this.props);
 	return (
 		<div>
 			Sign In
-			<form>
+			<form name="signIn" onSubmit={this._onSubmit}>
 				<div className="controlGroup">
 					<label htmlFor="name">Name</label>
 					<input type="text" id="name" name="name"  onChange={this.updateInput} />

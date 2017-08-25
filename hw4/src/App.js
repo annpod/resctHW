@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Main from './components/Main/Main';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Router from './components/Router/Router';
 import './App.css';
 
 const Home = props => <div>Home</div>
@@ -18,12 +17,11 @@ class NotFound extends Component {
 }
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
-	      <Header isLogin={true}/>
-	      <Main />
-		  <Footer />
+	     <Main />
 	  </div>
     );
   }

@@ -1,17 +1,34 @@
-const userdata = { "user":"sa", "password": "admin" };
-
-export const fetchUserList = () => {
-	fetch(`http://api.jyotish.gift/api/v1/auth/login/`, {
+export const fetchUser = (userdata) => {
+	return fetch(`http://api.jyotish.gift/api/v1/auth/login/`, {
 		headers: new Headers({
 			'Content-Type': 'application/json'
 		}),
 		method: 'POST',
+		mode: 'cors',
 		body: JSON.stringify(userdata)
 	})
-	.then(response => response.ok ? response.json() : Promise.reject(response.statusText))
-	.then(data => data)
-	.catch((error) => {
-		return Promise.reject(error)
+	.then(response => response.json())
+	.then(json => {
+		return json;
+	})
+	.catch(function(error) {
+		console.log(error);
 	});
 };
-console.log(fetchUserList());
+
+export const fetchUserList = (token) => {
+	return fetch(`http://api.jyotish.gift/api/v1/auth/secret/`, {
+		headers: new Headers({
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`,
+		}),
+		method: 'GET'
+	})
+	.then(response => response.json())
+	.then(json => {
+		return json;
+	})
+	.catch(function (error) {
+		console.log(error);
+	})
+}
