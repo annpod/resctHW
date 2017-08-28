@@ -1,29 +1,49 @@
 import React, { Component } from 'react';
-import Main from './components/Main/Main';
+//import Main from './components/Main/Main';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Router from './components/Router/Router';
 import './App.css';
 
 const Home = props => <div>Home</div>
 
-class Counter extends Component {
-  render() {
-    	return (<div>Counter</div>)
-	}
-}
-class NotFound extends Component {
-  render() {
-    	return (<div>NotFound</div>)
-	}
-}
-
 class App extends Component {
+constructor(props) {
+    super(props);
+    this.state = {
+      token: window.localStorage.getItem('token') ? true : false
+    };
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  login() {
+    this.setState({
+      token: true
+    });
+  }
+  logout() {
+    this.setState({
+      token: false
+    });
+  }
+
+  _onShowTeamLayer(targetValue) {
+    this.setState({showLayer: true});
+    this.setState({selectedItem: targetValue});
+    //console.log('targetValue',targetValue);
+  }
 
   render() {
     return (
       <div className="App">
-	     <Main />
-	  </div>
-    );
+        <Header isLogin={this.state.token}/>
+        <div className='container'>
+          <Router login={this.login} logout={this.logout}/>
+        </div>
+        <Footer/>
+      </div>
+    )
   }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './auth.css';
 import {fetchUser} from "../../api/api";
+import { Redirect } from 'react-router-dom'
 
 
 class SignIn extends Component{
@@ -9,7 +10,8 @@ class SignIn extends Component{
 		this.state = {
 			name: '',
 			password: '',
-			data: null
+			data: null,
+			redirect: false
 
 		}
 		this.updateInput = this.updateInput.bind(this);
@@ -32,15 +34,20 @@ class SignIn extends Component{
 		data.then(json => {
 				window.localStorage.setItem('token', json.message.token);
 				this.setState({data: json});
+				this.setState({ redirect: true });
 				this.props.login();
 			}
 		);
+		
 	}
 
 	render(){
 		console.log('props',this.props);
+		if (this.state.redirect) {
+			return <Redirect to={'/User'}/>
+		}
 	return (
-		<div>
+		<div className="formWrappwer">
 			Sign In
 			<form name="signIn" onSubmit={this._onSubmit}>
 				<div className="controlGroup">
@@ -53,6 +60,7 @@ class SignIn extends Component{
 				</div>
 				<button type="submit">Submit</button>
 			</form>
+			
 		</div>
 	)
 }

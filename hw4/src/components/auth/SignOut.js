@@ -16,7 +16,10 @@ class SignOut extends Component{
 	}
 	render(){
 		return (
-			<button type="submit" onClick={this._onClick} >Submit</button>
+			<div className="formWrappwer">
+				Are you sure?
+				<button type="submit" onClick={this._onClick} >Sign Out</button>
+			</div>
 		)
 	}
 }

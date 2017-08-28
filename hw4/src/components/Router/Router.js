@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect} from 'react-router-dom';
-
+import NotFound from '../ErrorPages/NotFound';
 import SignIn from '../auth/SignIn';
 import SignUp from '../auth/SignUp';
 import SignOut from '../auth/SignOut';
@@ -13,9 +13,10 @@ const Router = ({login,logout}) => {
 			<Switch>
 				<Route exact path="/" component={props => <SignIn {...props} login={login} />} />
 				<Route exact path="/SignIn" component={props => <SignIn {...props} login={login} />} />
-				<Route path="/SignUp" component={SignUp} />} />
+				<Route path="/SignUp" component={SignUp} />
 				<PrivateRoute path="/User" component={User}/>
-				<Route path="/SignOut" component={props => <SignOut {...props} logout={logout} />} />
+				<PrivateRoute path="/SignOut" component={props => <SignOut {...props} logout={logout} />} />
+				
 			</Switch>
 	)
 }
