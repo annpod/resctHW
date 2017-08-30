@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as actions from '../actions';
+import { recipes } from '../data/recipes';
 
-class Counter extends Component {
+class Book extends Component {
 	showHistory(prevCounters) {
 		return prevCounters.map((num, index) =>
 			<li key={index}>{num}</li>
 		)
 	}
 	render() {
+		console.log(recipes);
 		const {counter, increment, decrement, reset, filter, prevCounters} = this.props;
 		let history = this.showHistory(prevCounters);
 		return(
@@ -41,4 +43,4 @@ const mapDispatchToProps = dispatch => {
 	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(Book);

@@ -1,12 +1,14 @@
+import {INC, DEC, RESET, FILTER} from '../actions/types';
+
 export const increment = () => {
-	return { type: 'INC' };
+	return { type: INC };
 };
 export const decrement = () => {
-	return { type: 'DEC' };
+	return { type: DEC };
 };
 export const reset = () => {
-	return { type: 'RESET' };
+	return { type: RESET };
 };
 export const filter = () => {
-	return { type: 'FILTER' };
+	return { type: FILTER };
 }
