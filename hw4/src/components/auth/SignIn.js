@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './auth.css';
-import {fetchUser} from "../../api/api";
+import Api from "../../services/api";
 import { Redirect } from 'react-router-dom'
 
 
@@ -11,8 +11,8 @@ class SignIn extends Component{
 			name: '',
 			password: '',
 			data: null,
-			redirect: false
-
+			redirect: false,
+			error: ''
 		}
 		this.updateInput = this.updateInput.bind(this);
 		this._onSubmit = this._onSubmit.bind(this);
@@ -29,26 +29,32 @@ class SignIn extends Component{
 	_onSubmit(e) {
 		e.preventDefault();
 		const userdata = { "user":this.state.name, "password": this.state.password };
-
-		const data = fetchUser(userdata);
+		const data = Api.logIn(userdata);
 		data.then(json => {
-				window.localStorage.setItem('token', json.message.token);
 				this.setState({data: json});
-				this.setState({ redirect: true });
-				this.props.login();
+				if(this.state.data.status === 'success') {
+					window.localStorage.setItem('token', json.message.token);
+					window.localStorage.setItem('user', json.message.user.name);
+					this.setState({error: ''});
+					this.setState({redirect: true});
+					this.props.login();
+				} else {
+					this.setState({error: this.state.data.message});
+					console.log('error',this.state.error);
+				}
 			}
 		);
-		
 	}
 
 	render(){
-		console.log('props',this.props);
+		let ErorrMessage;
 		if (this.state.redirect) {
 			return <Redirect to={'/User'}/>
 		}
+
 	return (
 		<div className="formWrappwer">
-			Sign In
+			<h3>Log In</h3>
 			<form name="signIn" onSubmit={this._onSubmit}>
 				<div className="controlGroup">
 					<label htmlFor="name">Name</label>
@@ -58,9 +64,12 @@ class SignIn extends Component{
 					<label htmlFor="password">Password</label>
 					<input type="password" id="password" name="password" onChange={this.updateInput} />
 				</div>
-				<button type="submit">Submit</button>
+
+				<button type="submit">Log in</button>
 			</form>
-			
+			{this.state.error &&
+				<div className='errorMessage'>{this.state.error}</div>
+			}
 		</div>
 	)
 }

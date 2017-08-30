@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {fetchUserList} from "../../api/api";
+import Api from "../../services/api";
 
 class User extends Component{
 	constructor(){
@@ -15,7 +15,7 @@ class User extends Component{
 		let vals = Object.keys(obj).map(key => obj[key]);
 		return vals.map((item,index) => (
 				<div key={index}>
-					<span>{item.name}</span>
+					<strong>{item.name}&nbsp; - &nbsp;</strong>
 					<span>{item.email}</span>
 				</div>
 			)
@@ -23,9 +23,8 @@ class User extends Component{
 	}
 
 	componentDidMount() {
-		//console.log('componentDidMount');
 		let token = window.localStorage.getItem('token');
-		const data = fetchUserList(token);
+		const data = Api.getUsers(token);
 		data.then(json => this.setState({
 			userdata: json
 		})
@@ -39,7 +38,9 @@ class User extends Component{
 		}
 		return (
 			<div>
-				Users:
+				<h3>Users:</h3>
+				{!Users &&
+				<span>Loading...</span>}
 				<span>{Users}</span>
 
 			</div>

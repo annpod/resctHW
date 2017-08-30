@@ -11,7 +11,8 @@ class App extends Component {
 constructor(props) {
     super(props);
     this.state = {
-      token: window.localStorage.getItem('token') ? true : false
+		token: window.localStorage.getItem('token') ? true : false,
+		user: window.localStorage.getItem('user') ? window.localStorage.getItem('user') : ''
     };
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -19,13 +20,16 @@ constructor(props) {
 
   login() {
     this.setState({
-      token: true
+      token: true,
+		user: window.localStorage.getItem('user')
     });
   }
   logout() {
     this.setState({
-      token: false
+		token: false,
+		user: ''
     });
+	  window.localStorage.clear();
   }
 
   _onShowTeamLayer(targetValue) {
@@ -37,7 +41,7 @@ constructor(props) {
   render() {
     return (
       <div className="App">
-        <Header isLogin={this.state.token}/>
+        <Header isLogin={this.state.token} userName={this.state.user}/>
         <div className='container'>
           <Router login={this.login} logout={this.logout}/>
         </div>

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './Footer.css';
 
 const Footer = () => {
+	let date =  new Date();
+	let year = date.getFullYear();
     return (
         <div className="footer">       
-           Footer
+           &copy; {year} Footer
         </div>
     )
 }

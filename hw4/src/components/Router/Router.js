@@ -16,7 +16,7 @@ const Router = ({login,logout}) => {
 				<Route path="/SignUp" component={SignUp} />
 				<PrivateRoute path="/User" component={User}/>
 				<PrivateRoute path="/SignOut" component={props => <SignOut {...props} logout={logout} />} />
-				
+				<Route path="*" component={NotFound} />
 			</Switch>
 	)
 }

@@ -1,0 +1,49 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding:  0;
+  font-family: sans-serif;
+}
+.tabs {
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+}
+.tabs__labels{
+	display: flex;
+	flex-direction:  column;
+	width: 15%;
+	list-style: none;
+	background: #ccc;
+	padding-top: 1rem;
+}
+ol{
+	padding-left: 2rem;
+}
+.tabs__labels li{
+}
+.tabs__labels li a{
+	display: block;
+	width: 100%;
+	padding: 1rem 2rem;
+	text-decoration: none;
+
+}
+.tabs__labels li a.active{
+	font-weight: bold;
+	background: #bbb;
+}
+.tabs__content{
+	display: flex;
+	padding: 1rem;
+}
+button{
+	min-width: 4rem;
+	height: 1.5rem;
+	margin-top: 1rem
+}

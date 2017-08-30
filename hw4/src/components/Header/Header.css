@@ -2,6 +2,41 @@
 	padding: 1rem;
 	display: flex;
 	flex-direction: row;
-	background-color: #ccc;
+	background-color: #070033;
 	justify-content: space-between;
+	height: 2rem;
+}
+.header img {
+	height: 2.2rem;
+}
+
+.userName{
+	line-height: 2rem;
+	margin-right: 2rem;
+	color: #fff;
+}
+.header .authNav {
+	display: flex;
+	flex-direction: row;
+}
+.header .authNav a{
+	margin-left: 1rem;
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: #4e7bff;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.header .authNav a.SignOut{
+	background: transparent;
+}
+.header .authNav a.SignOut img{
+	height: 1.5rem;
+	vertical-align:  middle;
+}
+.header .authNav a.SignUp {
+	background-color: #ff6b3d;
+	color: #fff;
 }

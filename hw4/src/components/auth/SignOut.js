@@ -11,14 +11,13 @@ class SignOut extends Component{
 	}
 
 	_onClick() {
-		window.localStorage.clear();
 		this.props.logout();
 	}
 	render(){
 		return (
-			<div className="formWrappwer">
-				Are you sure?
-				<button type="submit" onClick={this._onClick} >Sign Out</button>
+			<div className="formWrappwer formWrappwer__ac">
+				<h5>Are you sure?</h5>
+				<button type="submit" onClick={this._onClick} >Log Out</button>
 			</div>
 		)
 	}

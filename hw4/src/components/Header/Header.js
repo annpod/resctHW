@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import { Link} from 'react-router-dom';
 
 import './Header.css';
-import './Menu.css';
 
-const Header = ({isLogin}) => {
+const Header = ({isLogin,userName}) => {
 
     return (
         <div className="header">       
-            <a href='#'><img src='../../assets/logo.svg' alt='logo' /></a>
+            <a href='#'><img src='https://upload.wikimedia.org/wikipedia/commons/d/df/Img_logo_blue.jpg' alt='logo' /></a>
 			<div className="authNav">
+				<div className="userName">{userName}</div>
 				{(!isLogin) ? (
 					<div>
-						<Link to="/SignIn">Sign In</Link>
-						<Link to="/SignUp">Sign Up</Link>
+						<Link className='Login' to="/SignIn">Log In</Link>
+						<Link className='SignUp' to="/SignUp">Sign Up</Link>
 					</div>
 					):(
 					<div>
-						<Link to="/SignOut">Sign Out</Link>
 						<Link to="/User">User</Link>
+						<Link className='SignOut' to="/SignOut"><img src='http://www.iconsdb.com/icons/preview/caribbean-blue/logout-xxl.png' alt='Log out'/></Link>
 					</div>
 					)
 				}
