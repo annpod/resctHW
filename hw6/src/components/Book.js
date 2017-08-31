@@ -2,38 +2,69 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as actions from '../actions';
-import { recipes } from '../data/recipes';
+import { filterList } from './../selectors';
+import './book.css';
+import MainItem from './RecipeItems/MainItem';
+import ListItem from './RecipeItems/ListItem';
+
+
+
 
 class Book extends Component {
-	showHistory(prevCounters) {
-		return prevCounters.map((num, index) =>
-			<li key={index}>{num}</li>
-		)
+	constructor(){
+		super();
+
+		this.deleteItem = this.deleteItem.bind(this);
+		this.getMainRecipe = this.getMainRecipe.bind(this);
+		this.filterList = this.filterList.bind(this);
+	}
+	deleteItem(item) {
+
+	}
+	componentDidMount(){
+		this.props.initData();
+	}
+	filterList(e){
+		this.props.saveFilter(e.target.value);
+	}
+
+	getMainRecipe(itemId) {
+		let active = this.props.recipes.find((e) => e.id === itemId);
+		console.log(active);
+		this.props.getMainRecipe(active);
 	}
 	render() {
 		console.log(recipes);
-		const {counter, increment, decrement, reset, filter, prevCounters} = this.props;
-		let history = this.showHistory(prevCounters);
-		return(
-			<div>
-				<br/>
-				Counter:
-				<span>{counter}</span>
-				<br/>
-				<br/>
-				<button onClick={increment}>Increment</button>
-				<button onClick={decrement}>Decrement</button>
-				<button onClick={reset}>Reset</button>
-				<button onClick={filter}>Filter</button>
-				<span>{history}</span>
+		const {initData, prevCounters, saveFilter, mainRecipe, getMainRecipe, recipes, filterList, filteredList, deleteItem} = this.props;
+		return (
+			<div className='container'>
+				<MainItem mainRecipe={mainRecipe}/>
+				<div className='search'>
+					<input className='searchField' type="text" placeholder='Search' onChange={this.filterList} ref={(input) => this.textInput = input} />
+				</div>
+				<div className='recipeListWrapper'>
+					<ul className='recipeList'>
+						{filteredList
+						//.filter(key => key.id !== mainRecipe.id)
+						.map((item, index) =>(
+							<ListItem key={index} item={item} mainRecipeId={mainRecipe.id} getMainRecipe={this.getMainRecipe} deleteItem={deleteItem} />
+						))}
+					</ul>
+				</div>
+
 			</div>
 		)
 	}
 }
 
 const mapStateToProps = state => ({
+	recipes: state.recipeReducer.recipes,
+	mainRecipe: state.recipeReducer.mainRecipe,
+	saveFilter: state.recipeReducer.saveFilter,
+	filteredList: filterList(state),
 	counter: state.counterReducer.counter,
-	prevCounters: state.counterReducer.prevCounters
+	prevCounters: state.counterReducer.prevCounters,
+	deleteItem: state.recipeReducer.deleteItem
 });
 
 const mapDispatchToProps = dispatch => {

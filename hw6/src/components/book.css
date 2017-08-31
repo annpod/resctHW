@@ -1,0 +1,95 @@
+.container{
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1170px;
+}
+.recipeMain{
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	border-bottom: 2px dotted #222222;
+}
+.recipeMain .recipeInfo {
+	display: flex;
+	margin-bottom: 2rem;
+}
+.recipeMain .description {
+	text-align: justify;
+}
+.recipeMain ul{
+	text-align: left;
+}
+.recipeMain .title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.recipeListWrapper {
+
+}
+.recipeList {
+	list-style: none;
+	padding-left: 40px;
+}
+.recipeList>li {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 2rem;
+}
+.recipeList>li img {
+	border: 4px solid transparent;
+	cursor: pointer;
+}
+.recipeList>li.active img {
+	cursor: default;
+}
+.recipeList>li.active img {
+	border: 4px solid red;
+}
+.recipeList li div.imgWrapper {
+	width: 20%;
+	padding-right: 5rem;
+}
+.recipeList li div.infoWrapper {
+	width: 80%;
+}
+.recipeList li div.infoWrapper .title {
+	display: flex;
+	justify-content: space-between;
+}
+.recipeList li div.infoWrapper ul {
+	padding-left: 1rem;
+}
+.recipeList li div.infoWrapper ul>li {
+	text-align: left;
+}
+.recipeList li div.infoWrapper h4 {
+	text-align: left;
+	margin-top: 0;
+}
+img.thumbnail {
+	max-width: 100%;
+}
+.search {
+	text-align: left;
+	padding-left: 40px;
+}
+.search .searchField {
+	margin: 2rem 0;
+	width: 40%;
+	padding: 5px;
+
+}
+/**/
+.addForm input,
+.addForm textarea{
+	width: 100%;
+	margin-bottom: 1rem;
+	padding: 5px;
+}
+.addForm textarea{
+	height: 100px;
+}
+.error{
+	color: red;
+}
