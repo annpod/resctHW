@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as actions from '../../actions';
+import AddRecipeForm from './AddRecipeForm';
 const FontAwesome = require('react-fontawesome');
-
-
 
 	class MainItem extends Component {
 		constructor(props) {
@@ -24,9 +23,9 @@ const FontAwesome = require('react-fontawesome');
 			this.updateInput = this.updateInput.bind(this);
 			this.openAddForm = this.openAddForm.bind(this);
 		}
-componentDidMount(){
+	componentDidMount(){
 
-}
+	}
 	updateInput(e) {
 		if (e.target.name === 'title'){
 			this.setState({newRecipe:{...this.state.newRecipe, title: e.target.value}});
@@ -51,31 +50,22 @@ componentDidMount(){
 			if(this.state.newRecipe.title && this.state.newRecipe.img && this.state.newRecipe.ingredients && this.state.newRecipe.description) {
 				this.setState({error: false});
 				this.props.addItem(this.state.newRecipe);
+				this.setState({addForm: false});
 			}else{
 				this.setState({error: true});
 			}
 	}
 	render() {
-			const{addItem, mainRecipe} = this.props;
-		console.log('state',this.state.newRecipe.ingredients);
+			const{ mainRecipe} = this.props;
 		return (
 			<div className='recipeMain'>
-				{this.state.newRecipe.ingredients}
 				{this.state.error &&
 					<div className="error">
 						Please, fill data fields!!!
 					</div>
 				}
 				{this.state.addForm &&
-				<dix className="addForm">
-					<input type='text' placeholder='Title' name='title' onChange={this.updateInput}/>
-					<input type='text' placeholder='IMG SRC' value={this.state.newRecipe.img}  name='img'  onChange={this.updateInput}/>
-					<textarea placeholder='Ingredients. Use "," for separate ingredients'  name='ingredients'  onChange={this.updateInput}></textarea>
-					<textarea placeholder='Description' name='description'  onChange={this.updateInput}></textarea>
-					<button className='plus' onClick={this.addItem}>
-						Save
-					</button>
-				</dix>
+					<AddRecipeForm closeForm={()=>{this.setState({addForm: false});}} />
 				}
 				<div className="title">
 					<h2>{mainRecipe.title}</h2>
@@ -125,7 +115,6 @@ componentDidMount(){
 }
 
 const mapStateToProps = state => ({
-	addItem: state.recipeReducer.addItem,
 });
 
 const mapDispatchToProps = dispatch => {

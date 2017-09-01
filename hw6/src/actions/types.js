@@ -1,8 +1,4 @@
-export const INC = 'INC';
-export const DEC = 'DEC';
-export const RESET = 'RESET';
-export const FILTER = 'FILTER';
-export const INITDATA = 'INITDATA';
+export const INIT_DATA = 'INIT_DATA';
 export const GET_MAIN_RECIPE = 'GET_MAIN_RECIPE';
 export const SAVE_FILTER = 'SAVE_FILTER';
 export const DELETE_ITEM = 'DELETE_ITEM';

@@ -30,11 +30,9 @@ class Book extends Component {
 
 	getMainRecipe(itemId) {
 		let active = this.props.recipes.find((e) => e.id === itemId);
-		console.log(active);
 		this.props.getMainRecipe(active);
 	}
 	render() {
-		console.log(recipes);
 		const {initData, prevCounters, saveFilter, mainRecipe, getMainRecipe, recipes, filterList, filteredList, deleteItem} = this.props;
 		return (
 			<div className='container'>
@@ -62,8 +60,6 @@ const mapStateToProps = state => ({
 	mainRecipe: state.recipeReducer.mainRecipe,
 	saveFilter: state.recipeReducer.saveFilter,
 	filteredList: filterList(state),
-	counter: state.counterReducer.counter,
-	prevCounters: state.counterReducer.prevCounters,
 	deleteItem: state.recipeReducer.deleteItem
 });
 
